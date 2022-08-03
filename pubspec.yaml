@@ -3,6 +3,8 @@ description: A video player for Flutter with Cupertino and Material play control
 version: 1.3.4
 homepage: https://github.com/fluttercommunity/chewie
 
+publish_to: none
+
 environment:
   sdk: '>=2.13.0 <3.0.0'
   flutter: '>=1.22.0'
@@ -12,7 +14,11 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^6.0.3
-  video_player: ^2.4.4
+  video_player:
+    git: 
+      url: git@github.com:icapps/plugins.git
+      path: packages/video_player/video_player
+      branch: video_player_pip 
   wakelock: ^0.6.1+2
 
 dev_dependencies:
