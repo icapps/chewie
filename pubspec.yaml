@@ -18,7 +18,7 @@ dependencies:
     git: 
       url: git@github.com:icapps/plugins.git
       path: packages/video_player/video_player
-      ref: 94b96985948d7a88de45699cede3674b6cc3d405
+      ref: 49594b00d52f8729655ef8ed27ea89af13f342b7
   wakelock: ^0.6.1+2
 
 dev_dependencies:
