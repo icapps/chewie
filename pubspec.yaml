@@ -1,31 +1,30 @@
 name: chewie
 description: A video player for Flutter with Cupertino and Material play controls
-version: 1.3.4
+version: 1.8.1
 homepage: https://github.com/fluttercommunity/chewie
 
 publish_to: none
 
 environment:
-  sdk: '>=2.13.0 <3.0.0'
-  flutter: '>=1.22.0'
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: ">=3.19.0"
 
 dependencies:
   cupertino_icons: ^1.0.5
   flutter:
     sdk: flutter
-  provider: ^6.0.3
+  provider: ^6.1.2
   video_player:
     git: 
       url: git@github.com:icapps/plugins.git
       path: packages/video_player/video_player
       ref: 82912b4be03c2bf53125d17272fde462070562db
-  wakelock: ^0.6.1+2
+  wakelock_plus: ^1.2.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  lint: ^1.8.2
-  very_good_analysis: ^3.0.0
+  flutter_lints: ^3.0.2
 
 flutter:
   uses-material-design: true

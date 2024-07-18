@@ -3,14 +3,13 @@ import 'dart:io';
 import 'package:chewie/chewie.dart';
 import 'package:chewie_example/app/theme.dart';
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
 import 'package:video_player/video_player.dart';
 
 class ChewieDemo extends StatefulWidget {
   const ChewieDemo({
-    Key? key,
+    super.key,
     this.title = 'Chewie Demo',
-  }) : super(key: key);
+  });
 
   final String title;
 
@@ -49,9 +48,9 @@ class _ChewieDemoState extends State<ChewieDemo> {
 
   Future<void> initializePlayer() async {
     _videoPlayerController1 =
-        VideoPlayerController.network(srcs[currPlayIndex]);
+        VideoPlayerController.networkUrl(Uri.parse(srcs[currPlayIndex]));
     _videoPlayerController2 =
-        VideoPlayerController.network(srcs[currPlayIndex]);
+        VideoPlayerController.networkUrl(Uri.parse(srcs[currPlayIndex]));
     await Future.wait([
       _videoPlayerController1.initialize(),
       _videoPlayerController2.initialize()
@@ -189,9 +188,9 @@ class _ChewieDemoState extends State<ChewieDemo> {
                     ? Chewie(
                         controller: _chewieController!,
                       )
-                    : Column(
+                    : const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           CircularProgressIndicator(),
                           SizedBox(height: 20),
                           Text('Loading'),
@@ -333,8 +332,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
 }
 
 class DelaySlider extends StatefulWidget {
-  const DelaySlider({Key? key, required this.delay, required this.onSave})
-      : super(key: key);
+  const DelaySlider({super.key, required this.delay, required this.onSave});
 
   final int? delay;
   final void Function(int?) onSave;
