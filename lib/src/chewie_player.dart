@@ -275,6 +275,8 @@ class ChewieController extends ChangeNotifier {
     this.fullScreenByDefault = false,
     this.cupertinoProgressColors,
     this.materialProgressColors,
+    this.materialSeekButtonFadeDuration = const Duration(milliseconds: 300),
+    this.materialSeekButtonSize = 26,
     this.placeholder,
     this.overlay,
     this.showControlsOnInitialize = true,
@@ -286,9 +288,11 @@ class ChewieController extends ChangeNotifier {
     this.zoomAndPan = false,
     this.maxScale = 2.5,
     this.subtitle,
+    this.showSubtitles = false,
     this.subtitleBuilder,
     this.customControls,
     this.errorBuilder,
+    this.bufferingBuilder,
     this.allowedScreenSleep = true,
     this.isLive = false,
     this.allowFullScreen = true,
@@ -323,6 +327,8 @@ class ChewieController extends ChangeNotifier {
     bool? fullScreenByDefault,
     ChewieProgressColors? cupertinoProgressColors,
     ChewieProgressColors? materialProgressColors,
+    Duration? materialSeekButtonFadeDuration,
+    double? materialSeekButtonSize,
     Widget? placeholder,
     Widget? overlay,
     bool? showControlsOnInitialize,
@@ -334,8 +340,10 @@ class ChewieController extends ChangeNotifier {
     bool? zoomAndPan,
     double? maxScale,
     Subtitles? subtitle,
+    bool? showSubtitles,
     Widget Function(BuildContext, dynamic)? subtitleBuilder,
     Widget? customControls,
+    WidgetBuilder? bufferingBuilder,
     Widget Function(BuildContext, String)? errorBuilder,
     bool? allowedScreenSleep,
     bool? isLive,
@@ -373,6 +381,10 @@ class ChewieController extends ChangeNotifier {
           cupertinoProgressColors ?? this.cupertinoProgressColors,
       materialProgressColors:
           materialProgressColors ?? this.materialProgressColors,
+      materialSeekButtonFadeDuration:
+          materialSeekButtonFadeDuration ?? this.materialSeekButtonFadeDuration,
+      materialSeekButtonSize:
+          materialSeekButtonSize ?? this.materialSeekButtonSize,
       placeholder: placeholder ?? this.placeholder,
       overlay: overlay ?? this.overlay,
       showControlsOnInitialize:
@@ -381,10 +393,12 @@ class ChewieController extends ChangeNotifier {
       optionsBuilder: optionsBuilder ?? this.optionsBuilder,
       additionalOptions: additionalOptions ?? this.additionalOptions,
       showControls: showControls ?? this.showControls,
+      showSubtitles: showSubtitles ?? this.showSubtitles,
       subtitle: subtitle ?? this.subtitle,
       subtitleBuilder: subtitleBuilder ?? this.subtitleBuilder,
       customControls: customControls ?? this.customControls,
       errorBuilder: errorBuilder ?? this.errorBuilder,
+      bufferingBuilder: bufferingBuilder ?? this.bufferingBuilder,
       allowedScreenSleep: allowedScreenSleep ?? this.allowedScreenSleep,
       isLive: isLive ?? this.isLive,
       allowFullScreen: allowFullScreen ?? this.allowFullScreen,
@@ -443,6 +457,12 @@ class ChewieController extends ChangeNotifier {
   /// Add a List of Subtitles here in `Subtitles.subtitle`
   Subtitles? subtitle;
 
+  /// Determines whether subtitles should be shown by default when the video starts.
+  ///
+  /// If set to `true`, subtitles will be displayed automatically when the video
+  /// begins playing. If set to `false`, subtitles will be hidden by default.
+  bool showSubtitles;
+
   /// The controller for the video you want to play
   final VideoPlayerController videoPlayerController;
 
@@ -485,6 +505,9 @@ class ChewieController extends ChangeNotifier {
   final Widget Function(BuildContext context, String errorMessage)?
       errorBuilder;
 
+  /// When the video is buffering, you can build a custom widget.
+  final WidgetBuilder? bufferingBuilder;
+
   /// The Aspect Ratio of the Video. Important to get the correct size of the
   /// video!
   ///
@@ -498,6 +521,12 @@ class ChewieController extends ChangeNotifier {
   /// The colors to use for the Material Progress Bar. By default, the Material
   /// player uses the colors from your Theme.
   final ChewieProgressColors? materialProgressColors;
+
+  // The duration of the fade animation for the seek button (Material Player only)
+  final Duration materialSeekButtonFadeDuration;
+
+  // The size of the seek button for the Material Player only
+  final double materialSeekButtonSize;
 
   /// The placeholder is displayed underneath the Video before it is initialized
   /// or played.

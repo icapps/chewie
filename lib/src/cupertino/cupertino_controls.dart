@@ -94,9 +94,10 @@ class _CupertinoControlsState extends State<CupertinoControls>
           child: Stack(
             children: [
               if (_displayBufferingIndicator)
-                const Center(
-                  child: CircularProgressIndicator(),
-                )
+                _chewieController?.bufferingBuilder?.call(context) ??
+                    const Center(
+                      child: CircularProgressIndicator(),
+                    )
               else
                 _buildHitArea(),
               Column(
@@ -346,7 +347,8 @@ class _CupertinoControlsState extends State<CupertinoControls>
   }
 
   Widget _buildHitArea() {
-    final bool isFinished = _latestValue.position >= _latestValue.duration;
+    final bool isFinished = (_latestValue.position >= _latestValue.duration) &&
+        _latestValue.duration.inSeconds > 0;
     final bool showPlayButton =
         widget.showPlayButton && !_latestValue.isPlaying && !_dragging;
 
@@ -458,7 +460,7 @@ class _CupertinoControlsState extends State<CupertinoControls>
     final position = _latestValue.duration - _latestValue.position;
 
     return Padding(
-      padding: const EdgeInsets.only(right: 12.0),
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: Text(
         '-${formatDuration(position)}',
         style: TextStyle(color: iconColor, fontSize: 12.0),
@@ -639,7 +641,8 @@ class _CupertinoControlsState extends State<CupertinoControls>
   }
 
   Future<void> _initialize() async {
-    _subtitleOn = chewieController.subtitle?.isNotEmpty ?? false;
+    chewieController.showSubtitles &&
+        (chewieController.subtitle?.isNotEmpty ?? false);
     controller.addListener(_updateState);
 
     _updateState();
@@ -720,13 +723,15 @@ class _CupertinoControlsState extends State<CupertinoControls>
                   255,
                 ),
               ),
+          draggableProgressBar: chewieController.draggableProgressBar,
         ),
       ),
     );
   }
 
   void _playPause() {
-    final isFinished = _latestValue.position >= _latestValue.duration;
+    final isFinished = _latestValue.position >= _latestValue.duration &&
+        _latestValue.duration.inSeconds > 0;
 
     setState(() {
       if (controller.value.isPlaying) {

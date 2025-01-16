@@ -1,3 +1,37 @@
+## [1.9.2]
+* Fixed broken Table of Contents links in `README.md`, take two.
+
+## [1.9.1+1]
+* Fixed broken Table of Contents links in `README.md`.
+
+## [1.9.1]
+* [#872](https://github.com/fluttercommunity/chewie/pull/872): feat: Add showSubtitles flag to control subtitles (#648). Thanks [floodoo](https://github.com/floodoo).
+* [#890](https://github.com/fluttercommunity/chewie/pull/890): Fix issue 888. Thanks [diegotori](https://github.com/diegotori).
+* **IMPORTANT**: Relaxed the minimum supported Flutter version to `3.24`. 
+  From now on, this library will make a best effort to support the latest `N-1` Flutter version at the minimum.
+
+## [1.9.0]
+* **BREAKING CHANGE**: Library now requires at least Flutter version `3.27.0`.
+
+## [1.8.7]
+* ⬆️ [#876](https://github.com/fluttercommunity/chewie/pull/876): Add keyboard controls seek forward and backward and fullscreen escape on desktop. Thanks [Ortes](https://github.com/Ortes).
+
+## [1.8.6]
+* ⬆️ [#874](https://github.com/fluttercommunity/chewie/pull/874): Add `devtools_options.yaml` configuration files. Thanks [MoRmdn](https://github.com/MoRmdn).
+
+## [1.8.5]
+* ⬆️ [#703](https://github.com/fluttercommunity/chewie/pull/703): Adding Seek buttons for Android. Thanks [GyanendroKh](https://github.com/GyanendroKh).
+* Upgraded `wakelock_plus` to version `1.2.8`, which uses `web` version `1.0.0`. Thanks [diegotori](https://github.com/diegotori).
+
+## [1.8.4]
+* 🛠️ [#838](https://github.com/fluttercommunity/chewie/pull/838): Add bufferingBuilder. Thanks [daniellampl](https://github.com/daniellampl).
+
+## [1.8.3]
+* 🛠️ [#828](https://github.com/fluttercommunity/chewie/pull/828): Fix the logic of the Center Play Button icon selection. Thanks [EmreDET](https://github.com/EmreDET).
+
+## 1.8.2
+* ⬆️ [#842](https://github.com/fluttercommunity/chewie/pull/842): package upgrades. Thanks [vaishnavi-2301](https://github.com/vaishnavi-2301).
+
 ## 1.8.1
 * ⬆️ [#825](https://github.com/fluttercommunity/chewie/pull/825): Upgraded `wakelock_plus` to version `1.2.2`. Thanks [diegotori](https://github.com/diegotori).
 
